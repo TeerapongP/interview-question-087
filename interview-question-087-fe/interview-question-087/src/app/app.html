@@ -1,0 +1,87 @@
+<main class="tw-min-h-screen tw-bg-white tw-p-5 tw-font-sans tw-text-slate-900">
+  <p-toast position="top-right" />
+  <section class="tw-mx-auto tw-max-w-5xl tw-border-2 tw-border-slate-900">
+    <h1 class="tw-bg-emerald-500 tw-py-3 tw-text-center tw-font-semibold">IT 04-1</h1>
+
+    <form class="tw-p-8 md:tw-px-20 md:tw-py-10" [formGroup]="form">
+      <div class="tw-grid tw-grid-cols-1 tw-gap-x-16 tw-gap-y-4 md:tw-grid-cols-2">
+        <label class="tw-grid tw-gap-2">
+          <span>First Name</span>
+          <input class="tw-w-full" type="text" pInputText formControlName="firstName"
+            [invalid]="showError('firstName')" />
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Last Name</span>
+          <input class="tw-w-full" type="text" pInputText formControlName="lastName"
+            [invalid]="showError('lastName')" />
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Email</span>
+          <input class="tw-w-full" type="email" pInputText formControlName="email" [invalid]="showError('email')" />
+          @if (showError('email')) {
+          <p-message severity="error" size="small" variant="simple" text="Please provide a valid Email" />
+          }
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Phone</span>
+          <p-inputmask styleClass="tw-w-full" formControlName="phone" mask="99-9999-9999" [unmask]="true"
+            placeholder="00-0000-0000" />
+          @if (showError('phone')) {
+          <p-message severity="error" size="small" variant="simple" text="Please provide a valid Phone" />
+          }
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Profile</span>
+          <p-fileupload #profileUpload mode="basic" chooseLabel="Browse" accept="image/*" [maxFileSize]="1000000"
+            (onSelect)="selectProfile($event.files[0])" />
+          @if (showError('profile')) {
+          <p-message severity="error" size="small" variant="simple" text="Please select a profile" />
+          }
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Birth Day</span>
+          <p-datepicker styleClass="tw-w-full" formControlName="birthDay" dateFormat="dd/mm/yy" [showIcon]="true" />
+          @if (showError('birthDay')) {
+          <p-message severity="error" size="small" variant="simple" text="Please provide a valid Birth Day" />
+          }
+        </label>
+
+        <label class="tw-grid tw-gap-2">
+          <span>Occupation</span>
+          <p-select styleClass="tw-w-full" formControlName="occupation" [options]="occupations" optionLabel="label"
+            optionValue="value" placeholder="Select occupation" />
+          @if (showError('occupation')) {
+          <p-message severity="error" size="small" variant="simple" text="Please select an Occupation" />
+          }
+        </label>
+
+        <fieldset class="tw-grid tw-gap-2 md:tw-col-start-1">
+          <legend>Sex</legend>
+          <div class="tw-flex tw-gap-10">
+            <label class="tw-flex tw-items-center tw-gap-2" for="male">
+              <p-radiobutton inputId="male" name="sex" value="male" formControlName="sex" /> Male
+            </label>
+            <label class="tw-flex tw-items-center tw-gap-2" for="female">
+              <p-radiobutton inputId="female" name="sex" value="female" formControlName="sex" /> Female
+            </label>
+          </div>
+          @if (showError('sex')) {
+          <p-message severity="error" size="small" variant="simple" text="Please select a Sex" />
+          }
+        </fieldset>
+      </div>
+
+      <div class="tw-mt-10 tw-grid tw-grid-cols-1 tw-gap-5 sm:tw-grid-cols-2 sm:tw-px-28">
+        <p-button styleClass="tw-w-full" type="submit" label="Save" severity="success" [disabled]="form.invalid"
+          (onClick)="save()" />
+        <p-button styleClass="tw-w-full" type="button" label="Clear" severity="secondary"
+          (onClick)="clear(profileUpload)" />
+      </div>
+    </form>
+  </section>
+</main>

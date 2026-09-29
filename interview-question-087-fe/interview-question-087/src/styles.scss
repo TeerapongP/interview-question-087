@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.p-toast .p-toast-message-success .p-toast-summary,
+.p-toast .p-toast-message-success .p-toast-detail {
+  color: #166534;
+}
