@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "interview-question-087": {
+    "interview-question-004": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,10 +68,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "interview-question-087:build:production"
+              "buildTarget": "interview-question-004:build:production"
             },
             "development": {
-              "buildTarget": "interview-question-087:build:development"
+              "buildTarget": "interview-question-004:build:development"
             }
           },
           "defaultConfiguration": "development"
